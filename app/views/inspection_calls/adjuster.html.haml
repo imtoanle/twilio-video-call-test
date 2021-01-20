@@ -1,0 +1,70 @@
+%nav.navbar.navbar-expand-sm.navbar-dark.bg-dark
+  %a.navbar-brand{:href => "#"}
+    %img.d-inline-block.align-top{:alt => "", :height => "30", :src => "https://www.twilio.com/docs/static/img/wordmark.06c5f14fff7c.svg", :width => "30"}/
+    %span{:style => "margin: 0 10px"} Video Quick Start
+  %button.navbar-toggler{"aria-controls" => "collapsible-content", "aria-expanded" => "false", "aria-label" => "Toggle Navigation", "data-target" => "#collapsible-content", "data-toggle" => "collapse", :type => "button"}
+    %span.navbar-toggler-icon
+  #collapsible-content.collapse.navbar-collapse
+    %ul.navbar-nav.mr-auto
+      %li.nav-item
+        %a.nav-link{:href => "/examples"} More Examples
+    %button#leave-room.btn.btn-outline-primary Leave Room
+.container-fluid
+  #room.row
+    #participants.col-xs-12.col-sm-3.col-md-2{:style => "text-align: center"}
+    #active-participant.col-xs-12.col-sm-9.col-md-10{:style => "text-align: center"}
+      .participant.main
+        %video{:autoplay => "", :muted => "", :playsinline => ""}
+  #modals
+    #select-mic.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "select-mic-label", "data-backdrop" => "static", :role => "dialog", :tabindex => "-1"}
+      .modal-dialog{:role => "document"}
+        .modal-content
+          .modal-header
+            %h5#select-mic-label.modal-title Microphone
+          .modal-body{:style => "text-align: center"}
+            %select{:style => "width: 100%"}
+            %svg{"aria-hidden" => "true", :focusable => "false", :height => "100", :style => "margin: 10px 0", :viewbox => "0 0 100 100", :width => "100"}
+              %defs
+                %clippath#level-indicator
+                  %rect{:height => "100", :width => "100", :x => "0", :y => "100"}
+              %path{:d => "m52 38v14c0 9.757-8.242 18-18 18h-8c-9.757 0-18-8.243-18-18v-14h-8v14c0 14.094 11.906 26 26 26v14h-17v8h42v-8h-17v-14c14.094 0 26-11.906 26-26v-14h-8z", :fill => "rgb(220, 220, 220)"}
+              %path{:d => "m26 64h8c5.714 0 10.788-4.483 11.804-10h-11.887v-4h12.083v-4h-12.083v-4h12.083v-4h-12.083v-4h12.083v-4h-12.083v-4h12.083v-4h-12.083v-4h12.083v-4h-12.083v-4h11.887c-1.016-5.517-6.09-10-11.804-10h-8c-6.393 0-12 5.607-12 12v40c0 6.393 5.607 12 12 12z", :fill => "rgb(220, 220, 220)"}
+              %path{"clip-path" => "url(#level-indicator)", :d => "m52 38v14c0 9.757-8.242 18-18 18h-8c-9.757 0-18-8.243-18-18v-14h-8v14c0 14.094 11.906 26 26 26v14h-17v8h42v-8h-17v-14c14.094 0 26-11.906 26-26v-14h-8z", :fill => "#080"}
+              %path{"clip-path" => "url(#level-indicator)", :d => "m26 64h8c5.714 0 10.788-4.483 11.804-10h-11.887v-4h12.083v-4h-12.083v-4h12.083v-4h-12.083v-4h12.083v-4h-12.083v-4h12.083v-4h-12.083v-4h12.083v-4h-12.083v-4h11.887c-1.016-5.517-6.09-10-11.804-10h-8c-6.393 0-12 5.607-12 12v40c0 6.393 5.607 12 12 12z", :fill => "#080"}
+          .modal-footer
+            %button.btn.btn-primary{:type => "button"} Apply
+    #select-camera.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "select-camera-label", "data-backdrop" => "static", :role => "dialog", :tabindex => "-1"}
+      .modal-dialog{:role => "document"}
+        .modal-content
+          .modal-header
+            %h5#select-camera-label.modal-title Camera
+          .modal-body{:style => "text-align: center"}
+            %select{:style => "width: 100%"}
+            %video{:autoplay => "", :muted => "", :playsinline => "", :style => "margin: 10px 0; width: 60%"}
+          .modal-footer
+            %button.btn.btn-primary{:type => "button"} Apply
+    #join-room.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "join-room-label", "data-backdrop" => "static", :role => "dialog", :tabindex => "-1"}
+      .modal-dialog{:role => "document"}
+        .modal-content
+          .modal-header
+            %h5#join-room-label.modal-title Video Chat
+          .modal-body
+            .form-group
+              %label#room-name-label{:for => "room-name"} Room Name
+              %input#room-name.form-control{:type => "text"}/
+            .form-group
+              %label#screen-name-label{:for => "screen-name"} User Name
+              %input#screen-name.form-control{:type => "text"}/
+            .alert.alert-warning{:role => "alert"}
+          .modal-footer
+            %button.btn.btn-dark{:type => "button"} Change Microphone and Camera
+            %button.btn.btn-primary{:type => "button"} Join
+    #show-error.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "show-error-label", "data-backdrop" => "static", :role => "dialog", :tabindex => "-1"}
+      .modal-dialog{:role => "document"}
+        .modal-content
+          .modal-header
+            %h5#show-error-label.modal-title Error
+          .modal-body
+            .alert.alert-warning{:role => "alert"}
+
+= javascript_pack_tag 'index'
