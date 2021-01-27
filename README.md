@@ -1,24 +1,16 @@
-# README
+### Description
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This application is intended to allow two people to start a video inspection call using Twilio Video JS.
 
-Things you may want to cover:
+### Work Flow:
 
-* Ruby version
+1. User A (Adjuster) registers a claim
+2. User B (Claimant) receive an email with a link to start a video call
 
-* System dependencies
 
-* Configuration
+### Your tasks:
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+1. Find all the errors, fix them and make sure the application is running fine.
+2. Please use your own Twilio video free account
+3. Make sure A & B can start video call
+4. Add feature specs, model spec and controller spec

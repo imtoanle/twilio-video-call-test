@@ -3,10 +3,5 @@ Rails.application.routes.draw do
   root 'claims#index'
 
   resources :claims, except: %i[edit update destroy]
-  resources :inspection_calls, only: :index do
-    collection do
-      get :claimant
-      get :adjuster
-    end
-  end
+  resources :inspection_calls, only: :index
 end
