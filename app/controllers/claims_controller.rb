@@ -1,6 +1,4 @@
 class ClaimsController < ApplicationController
-  before_action :load_resources
-
   def index
     @claims = Claim.all
   end
@@ -10,18 +8,16 @@ class ClaimsController < ApplicationController
   end
 
   def create
-    @claim = Claim.new(claim_params)
+    claim = Claim.new(claim_params)
 
-    if @@claim.save
-      ClaimMailer.with(claim: @claim).request_inspection_call.deliver
+    if claim.save
+      ClaimMailer.with(claim: claim).request_inspection_call.deliver
 
-      redirect_to adjuster_inspection_calls_path(token: @@claim.token)
+      redirect_to adjuster_inspection_calls_path(token: claim.token)
     else
       render :new
     end
   end
-
-  def show; end
 
   private
 

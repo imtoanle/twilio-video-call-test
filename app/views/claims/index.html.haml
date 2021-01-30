@@ -7,3 +7,18 @@
         = link_to 'New Claim', new_claim_path, class: 'btn btn-sm btn-primary'
         
   .col-sm-2
+
+.row
+  %table.table
+    %thead
+      %tr
+        %th{ scope: "col" } #
+        %th{ scope: "col" } Claim Number
+        %th{ scope: "col" } Claimant Contact
+    %tbody
+      - @claims.each do |claim|
+        %tr
+          %th{ scope: "row" }= claim.id
+          %td= claim.claim_number
+          %td= claim.claimant_contact
+      

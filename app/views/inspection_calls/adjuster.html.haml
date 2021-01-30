@@ -51,7 +51,7 @@
           .modal-body
             .form-group
               %label#room-name-label{:for => "room-name"} Room Name
-              %input#room-name.form-control{:type => "text"}/
+              %input#room-name.form-control{:type => "text", readonly: params[:token].present?}/
             .form-group
               %label#screen-name-label{:for => "screen-name"} User Name
               %input#screen-name.form-control{:type => "text"}/
