@@ -87,11 +87,13 @@ async function selectAndJoinRoom(error = null) {
 
   try {
     // Fetch an AccessToken to join the Room.
-    // const response = await fetch(`/token?identity=${identity}`);
+    const response = await fetch(`/tokens?identity=${identity}`, {
+      method: 'POST',
+      headers: { 'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content') }
+    });
 
     // Extract the AccessToken from the Response.
-    // const token = await response.text();
-    const token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsImN0eSI6InR3aWxpby1mcGE7dj0xIn0.eyJqdGkiOiJTS2E1YTkzMzM1MDk0YmI3YTkyY2U0YjU3M2MzOGM5MWNlLTE2MTEwMjgyMzIiLCJpc3MiOiJTS2E1YTkzMzM1MDk0YmI3YTkyY2U0YjU3M2MzOGM5MWNlIiwic3ViIjoiQUNhMWRkNDYyNGIzNWQ5MTRkZjNiYTMyMjE3NDM3Y2Y0OSIsImV4cCI6MTYxMTAzMTgzMiwiZ3JhbnRzIjp7ImlkZW50aXR5Ijoicm9hZG1hcCIsInZpZGVvIjp7fX19._e-nOKKFjM0Ip82JdSQTX0nAfYaOGs_hHJxc-vfIUG8";
+    const token = await response.text();
 
     // Add the specified audio device ID to ConnectOptions.
     connectOptions.audio = { deviceId: { exact: deviceIds.audio } };
@@ -142,7 +144,6 @@ async function selectMicrophone() {
         micLevel(stream, maxLevel, level => $levelIndicator.attr('y', maxLevel - level));
       });
     } catch (error) {
-      debugger
       showError($showErrorModal, error);
       return;
     }

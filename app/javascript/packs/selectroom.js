@@ -16,9 +16,9 @@ function selectRoom($modal, error) {
   const $roomName = $('#room-name', $modal);
 
   // If Room name is provided as a URL parameter, pre-populate the Room name field.
-  const { roomName } = getUrlParams();
-  if (roomName) {
-    $roomName.val(roomName);
+  const { token, roomName } = getUrlParams();
+  if (token || roomName) {
+    $roomName.val(token || roomName);
   }
 
   // If any previously saved user name exists, pre-populate the user name field.
@@ -50,7 +50,7 @@ function selectRoom($modal, error) {
         const roomName = $roomName.val();
         if (identity && roomName) {
           // Append the Room name to the web application URL.
-          addUrlParams({ roomName });
+          if (!token) addUrlParams({ roomName });
 
           // Save the user name.
           localStorage.setItem('userName', identity);
