@@ -5,9 +5,9 @@ RSpec.describe TokensController, type: :controller do
     let(:access_token) { double(:access_token) }
 
     before do
-      Rails.application.credentials.twilio = {
+      allow(Rails.application.credentials).to receive(:twilio).and_return({
         account_sid: 'account_sid', api_key: 'api_key', api_secret: 'api_secret'
-      }
+      }).exactly(3).times
     end
 
     specify do

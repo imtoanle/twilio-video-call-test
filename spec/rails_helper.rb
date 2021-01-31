@@ -64,3 +64,14 @@ RSpec.configure do |config|
 
   config.include FactoryBot::Syntax::Methods
 end
+
+Capybara.javascript_driver = :selenium_chrome_headless
+Capybara.register_driver :selenium_chrome_headless do |app|
+  options = Selenium::WebDriver::Chrome::Options.new
+  options.add_argument('headless')
+  options.add_argument('use-fake-device-for-media-stream')
+  options.add_argument('use-fake-ui-for-media-stream')
+   
+  Capybara::Selenium::Driver.new(app, { browser: :chrome, options: options })
+end
+Capybara.default_max_wait_time = 5
